@@ -11,7 +11,8 @@ const initialState = {
   filters: {
     text: '',
     location: '',
-    experience: ''
+    experience: '',
+    keyword: ''
   }
 }
 

@@ -5,9 +5,12 @@ const filterReducer = (state, action) => {
     case 'UPDATE_FILTERS': return { ...state, filters: { ...state.filters, [action.payload.name]: action.payload.value } }
     case 'FILTER_JOBS': {
       let tempJobs = [...state.jobs];
-      const { text, location, experience } = state.filters;
+      const { text, location, experience, keyword } = state.filters;
       if (text) {
         tempJobs = tempJobs.filter(job => job.title.toLowerCase().includes(text.toLowerCase().trim())).sort((a, b) => b.createdDate - a.createdDate);
+      }
+      if (keyword) {
+        tempJobs = tempJobs.filter(job => job.tagsAndSkills.toLowerCase().includes(keyword.toLowerCase().trim())).sort((a, b) => b.createdDate - a.createdDate);
       }
       if (location) {
         tempJobs = tempJobs.filter(job => job.placeholders[2].label.toLowerCase().includes(location.toLowerCase().trim())).sort((a, b) => b.createdDate - a.createdDate);

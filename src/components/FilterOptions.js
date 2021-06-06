@@ -5,7 +5,7 @@ import useGlobalContext from '../context/context';
 
 const FilterOptions = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const { updateFilters, filters: { text, location, experience } } = useGlobalContext();
+  const { updateFilters, filters: { text, location, experience, keyword } } = useGlobalContext();
 
   const onSubmit = e => {
     e.preventDefault();
@@ -19,6 +19,8 @@ const FilterOptions = () => {
       </div>
       <button class="advanced" onClick={() => setShowAdvanced(!showAdvanced)}>Advanced Search</button>
       <div className="advanced-search" style={{ display: `${showAdvanced ? 'block' : 'none'}` }}>
+        <label htmlFor="keyword">Search by keyword</label>
+        <input type="text" id="keyword" name="keyword" value={keyword} onChange={updateFilters} />
         <label htmlFor="location">Search by location</label>
         <input type="text" id="location" name="location" value={location} onChange={updateFilters} />
         <label htmlFor="experience">Search by experience</label>
